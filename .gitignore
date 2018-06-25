@@ -1,6 +1,5 @@
 # App artifacts
 /_build
-/db
 /deps
 /*.ez
 
@@ -25,3 +24,8 @@ npm-debug.log
 # secrets files as long as you replace their contents by environment
 # variables.
 /config/*.secret.exs
+
+# SQLite Database
+*.db
+*.db-*
+

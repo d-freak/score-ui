@@ -184,4 +184,68 @@ defmodule Score.IkanTest do
       assert %Ecto.Changeset{} = Ikan.change_game(game)
     end
   end
+
+  describe "score" do
+    alias Score.Ikan.Score
+
+    @valid_attrs %{game_id: 42, user_id: 42, value: 42}
+    @update_attrs %{game_id: 43, user_id: 43, value: 43}
+    @invalid_attrs %{game_id: nil, user_id: nil, value: nil}
+
+    def score_fixture(attrs \\ %{}) do
+      {:ok, score} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Ikan.create_score()
+
+      score
+    end
+
+    test "list_score/0 returns all score" do
+      score = score_fixture()
+      assert Ikan.list_score() == [score]
+    end
+
+    test "get_score!/1 returns the score with given id" do
+      score = score_fixture()
+      assert Ikan.get_score!(score.id) == score
+    end
+
+    test "create_score/1 with valid data creates a score" do
+      assert {:ok, %Score{} = score} = Ikan.create_score(@valid_attrs)
+      assert score.game_id == 42
+      assert score.user_id == 42
+      assert score.value == 42
+    end
+
+    test "create_score/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Ikan.create_score(@invalid_attrs)
+    end
+
+    test "update_score/2 with valid data updates the score" do
+      score = score_fixture()
+      assert {:ok, score} = Ikan.update_score(score, @update_attrs)
+      assert %Score{} = score
+      assert score.game_id == 43
+      assert score.user_id == 43
+      assert score.value == 43
+    end
+
+    test "update_score/2 with invalid data returns error changeset" do
+      score = score_fixture()
+      assert {:error, %Ecto.Changeset{}} = Ikan.update_score(score, @invalid_attrs)
+      assert score == Ikan.get_score!(score.id)
+    end
+
+    test "delete_score/1 deletes the score" do
+      score = score_fixture()
+      assert {:ok, %Score{}} = Ikan.delete_score(score)
+      assert_raise Ecto.NoResultsError, fn -> Ikan.get_score!(score.id) end
+    end
+
+    test "change_score/1 returns a score changeset" do
+      score = score_fixture()
+      assert %Ecto.Changeset{} = Ikan.change_score(score)
+    end
+  end
 end

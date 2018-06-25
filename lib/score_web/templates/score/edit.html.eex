@@ -1,0 +1,5 @@
+<h2>Edit Score</h2>
+
+<%= render "form.html", Map.put(assigns, :action, score_path(@conn, :update, @score)) %>
+
+<span><%= link "Back", to: score_path(@conn, :index) %></span>

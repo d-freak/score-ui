@@ -1,0 +1,30 @@
+<h2>Listing Score</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Game</th>
+      <th>Value</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for score <- @score do %>
+    <tr>
+      <td><%= score.user_id %></td>
+      <td><%= score.game_id %></td>
+      <td><%= score.value %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: score_path(@conn, :show, score), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: score_path(@conn, :edit, score), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: score_path(@conn, :delete, score), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Score", to: score_path(@conn, :new) %></span>

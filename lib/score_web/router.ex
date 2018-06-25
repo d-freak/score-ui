@@ -19,6 +19,7 @@ defmodule ScoreWeb.Router do
     get "/", PageController, :index
 
     resources "/user", UserController
+    resources "/result", ResultController
   end
 
   # Other scopes may use custom stacks.

@@ -1,0 +1,18 @@
+<h2>Show Result</h2>
+
+<ul>
+
+  <li>
+    <strong>Date:</strong>
+    <%= @result.date %>
+  </li>
+
+  <li>
+    <strong>Memo:</strong>
+    <%= @result.memo %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: result_path(@conn, :edit, @result) %></span>
+<span><%= link "Back", to: result_path(@conn, :index) %></span>

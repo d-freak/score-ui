@@ -124,4 +124,64 @@ defmodule Score.IkanTest do
       assert %Ecto.Changeset{} = Ikan.change_result(result)
     end
   end
+
+  describe "game" do
+    alias Score.Ikan.Game
+
+    @valid_attrs %{result_id: 42}
+    @update_attrs %{result_id: 43}
+    @invalid_attrs %{result_id: nil}
+
+    def game_fixture(attrs \\ %{}) do
+      {:ok, game} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Ikan.create_game()
+
+      game
+    end
+
+    test "list_game/0 returns all game" do
+      game = game_fixture()
+      assert Ikan.list_game() == [game]
+    end
+
+    test "get_game!/1 returns the game with given id" do
+      game = game_fixture()
+      assert Ikan.get_game!(game.id) == game
+    end
+
+    test "create_game/1 with valid data creates a game" do
+      assert {:ok, %Game{} = game} = Ikan.create_game(@valid_attrs)
+      assert game.result_id == 42
+    end
+
+    test "create_game/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Ikan.create_game(@invalid_attrs)
+    end
+
+    test "update_game/2 with valid data updates the game" do
+      game = game_fixture()
+      assert {:ok, game} = Ikan.update_game(game, @update_attrs)
+      assert %Game{} = game
+      assert game.result_id == 43
+    end
+
+    test "update_game/2 with invalid data returns error changeset" do
+      game = game_fixture()
+      assert {:error, %Ecto.Changeset{}} = Ikan.update_game(game, @invalid_attrs)
+      assert game == Ikan.get_game!(game.id)
+    end
+
+    test "delete_game/1 deletes the game" do
+      game = game_fixture()
+      assert {:ok, %Game{}} = Ikan.delete_game(game)
+      assert_raise Ecto.NoResultsError, fn -> Ikan.get_game!(game.id) end
+    end
+
+    test "change_game/1 returns a game changeset" do
+      game = game_fixture()
+      assert %Ecto.Changeset{} = Ikan.change_game(game)
+    end
+  end
 end

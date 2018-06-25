@@ -19,6 +19,7 @@ defmodule ScoreWeb.Router do
     get "/", PageController, :index
 
     resources "/user", UserController
+    resources "/game", GameController
     resources "/result", ResultController
   end
 

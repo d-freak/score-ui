@@ -1,20 +1,39 @@
-# Score
+# 環境構築
 
-To start your Phoenix server:
+1. グローバル環境に以下をインストール
+    - `dnf install nodejs`
+    - `dnf install sqlite`  # SQLiteを使用する場合
+    - `dnf install erlang`
+    - `dnf install elixir`
+    - `dnf install rebar`
+    - `dnf install inotify-tools`
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.create && mix ecto.migrate`
-  * Install Node.js dependencies with `cd assets && npm install`
-  * Start Phoenix endpoint with `mix phx.server`
+1. npmアップデートツールを導入しておく
+    - `npm -g install npm-check-updates`
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+1. ローカル環境にhexをインストール
+    - `mix local.hex`
+    - パッケージ管理ツールであり、npmやgem相当のもの
 
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
+1. ローカル環境にphoenixをインストール
+    - `mix archive.install /path/to/phx_new.ez`
+    - 入手先は以下
+        - https://github.com/phoenixframework/archives
 
-## Learn more
+----
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: http://phoenixframework.org/docs/overview
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+# 開発準備 (クローン後にやること)
+
+1. プロジェクトのルートディレクトリに移動
+    - `cd sample_project`
+
+1. 依存パッケージを取得
+    - `mix deps.get`
+    - `cd assets`
+    - `npm-check-updates -u`
+    - `npm install`
+    - `cd ..`
+
+1. マイグレーション
+    - `mix ecto.migrate`
+

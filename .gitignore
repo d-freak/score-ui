@@ -29,6 +29,3 @@ npm-debug.log
 *.db
 *.db-*
 
-# Migration
-/priv/repo/migrations/*.exs
-

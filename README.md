@@ -34,6 +34,10 @@
     - `npm install`
     - `cd ..`
 
-1. マイグレーション
+1. データベースのマイグレーション
     - `mix ecto.migrate`
+
+1. サーバを起動
+    - `mix phx.server`
+        - この状態で `http://localhost:54334/` にブラウザでアクセスする
 
